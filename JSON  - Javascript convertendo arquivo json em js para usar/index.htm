@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards de Jogos com JSON</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        
+        .card img {
+            max-width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        
+        .card h3 {
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="jogos-container">
+        <!-- <div class="card"> -->
+        <!-- <img src="img/arqueiro.jpg" alt=""> -->
+        <!-- <h3>O Arqueiro</h3> -->
+        <!-- </div> -->
+    </div>
+
+
+    <script>
+        //criar uma função que leia as informações do JSON ou as informções da API se for o caso e transforme em card, ou seja traga para o front end oque estiver la no arquivo JSON:
+
+        //primeiro convertemos em arquivo JSON, pois vem como string.
+
+        function carregar() {
+            fetch('jogos.json') //fetch serve para buscar arquivos ou informações
+                .then(response => response.json()) //then é quando houver/acontecer. response - resposta, quando acontecer a resposta e ela for sucesso, essa função vai pegar a resposta e converter a resposta em arquivo JSON
+                .then(jogos => { //tudo oque estiver aqui dentro vamos acessar os jogos/lista de jogos que temos/ precisamos colocar os jogos dentro do container, para isso colocamos um id nele e puxamos aqui
+
+                    const container = document.querySelector("#jogos-container") //para qual div quero jogar os cards.
+
+                    jogos.map(jogo => { //map vai percorrer todo o array no arquivo json
+                        const card = document.createElement('div') //crio minha div,cada card vai ser um elemento, e digo que meu elemento é uma div('div')
+                        card.classList.add("card") //adiciono uma classe á minha div, e informo qual clase quero puxar/inserir
+
+                        const img = document.createElement("img") //digo que estou criando um elemento, e informo que é o img("img").
+                        img.src = jogo.imagem //imagem é onde tem o endereço do jogo no JSON. Vai em jogo, que ta mapeando todos elementos no JSON e procura a key:"imagem": que possui o src/source endereço do jogo.
+                        img.alt = jogo.nome //vai em jogo que ta acessando o JSON procura o nome do jogo.para caso de algum erro sabermos o nome de qual esta com erro.
+
+                        const titulo = document.createElement("h3") //para criar o titulo, e informo a div que está com o titulo("h3")
+                        titulo.textContent = jogo.nome //informo que meu titulo vai ser um texto que está dentro deste ("h3") informado acima, e procura em jogo que nos coloca dentro no arquivo JSON e procura a key"nome":.
+                        card.appendChild(img) //para associar as coisas,appendChild coloca um filho dentro desse meu card.
+                        card.appendChild(titulo) //dentro da minha div card eu tenho um img e um h3,aqui eu associo ao card seus filhos img e h3 deixando tudo associado, aqui no js renomiei acima o h3 como titulo const titulo = document.createElement("h3").
+                        container.appendChild(card) //aqui associo o container ao card, pois no html meu card está dentro do container.
+                    })
+                }) //agora vamos pegar os cards/jogos
+        }
+
+        carregar() //para executar tudo chamo minha função que esta englobando todo meu codigo, ou seja, todo o meu codigo está subordinado a esta função, para executar chamo ela.
+    </script>
+</body>
+
+</html>

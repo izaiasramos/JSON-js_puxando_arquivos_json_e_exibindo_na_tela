@@ -1,0 +1,25 @@
+[{
+        "nome": "O arqueiro",
+        "imagem": "img/arqueiro.jpg"
+    },
+    {
+        "nome": "Crash",
+        "imagem": "img/crash.jpg"
+    },
+    {
+        "nome": "Diversos tipos de jogos",
+        "imagem": "img/diversos.jpg"
+    },
+    {
+        "nome": "Free Fire",
+        "imagem": "img/freefire.jpg"
+    },
+    {
+        "nome": "Pes",
+        "imagem": "img/pes.jpg"
+    },
+    {
+        "nome": "Spiderman",
+        "imagem": "img/spiderman.jpg"
+    }
+]
